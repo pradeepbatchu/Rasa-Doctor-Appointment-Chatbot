@@ -1,0 +1,96 @@
+version: "2.0"
+
+actions:
+  - action_botfront_disambiguation
+  - action_botfront_disambiguation_followup
+  - action_botfront_fallback
+  - action_botfront_mapping
+  - action_submit
+  - utter_ask_PERSON
+  - utter_ask_rephrase
+  - utter_ask_time
+  - utter_ask_time2
+  - utter_default
+  - utter_goodbye
+  - utter_greet
+  - utter_name_confirm
+  - utter_name_time_confirm
+entities: []
+intents:
+  - book_appointment
+  - cancel
+  - goodbye
+  - greet
+  - test
+responses:
+  utter_ask_PERSON:
+  - text: Please mention your name
+  utter_ask_rephrase:
+  - text: I didn't quite understand that. Can you rephrase?
+  utter_ask_time:
+  - text: Mention your booking date
+  utter_ask_time2:
+  - text: Please mention your time
+  utter_default:
+  - text: "Sorry, I didn't get that \U0001F937. Could you please rephrase?"
+  - text: "I'm sorry, but I didn't understand you. Could you please rephrase what
+        you just said?"
+  - text: 'I didn''t quite get that, could you rephrase your message?'
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+    - buttons:
+        - payload: '/book_appointment{"book_type":"book"}'
+          title: Book an Appointment
+        - payload: '/cancel{"book_type":"cancel"}'
+          title: Cancel an Appointment
+        - payload: '/test{"book_type":"test"}'
+          title: Book for Testing
+      text: 'Hi, how can I help you?'
+  utter_name_confirm:
+  - text: 'Appointment cancelled for {PERSON}.\n'
+  utter_name_time_confirm:
+  - text: 'booking confirmation for {PERSON}  at {time2}.'
+session_config: {}
+slots:
+  PERSON:
+    type: any
+    influence_conversation: false
+  book_type:
+    type: any
+    influence_conversation: false
+  disambiguation_message:
+    type: any
+    influence_conversation: false
+  end_time:
+    type: any
+    influence_conversation: false
+  fallback_language:
+    initial_value: en
+    type: any
+    influence_conversation: false
+  grain:
+    type: any
+    influence_conversation: false
+  requested_slot:
+    type: any
+    influence_conversation: false
+  start_time:
+    type: any
+    influence_conversation: false
+  time:
+    type: any
+    influence_conversation: false
+  time2:
+    type: any
+    influence_conversation: false
+forms:
+  transact_search_form:
+    PERSON:
+      - type: from_text
+    book_type:
+      - type: from_text
+    time:
+      - type: from_text
+    time2:
+      - type: from_text

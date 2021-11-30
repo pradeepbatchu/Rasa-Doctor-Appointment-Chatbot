@@ -1,0 +1,52 @@
+version: "2.0"
+rules:
+  - rule: activate book appointment
+    condition: []
+    steps:
+      - intent: book_appointment
+      - action: transact_search_form
+      - active_loop: transact_search_form
+    
+  - rule: submit book Appointment
+    condition:
+      - active_loop: transact_search_form
+    steps:
+      - action: transact_search_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_submit_search_form
+      
+  - rule: cancel appointment
+    condition: []
+    steps:
+      - intent: cancel
+      - action: transact_search_form
+      - active_loop: transact_search_form
+    
+  - rule: submit cancel Appointment
+    condition:
+      - active_loop: transact_search_form
+    steps:
+      - action: transact_search_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_submit_search_form
+      
+  - rule: book test appointment
+    condition: []
+    steps:
+      - intent: test
+      - action: transact_search_form
+      - active_loop: transact_search_form
+    
+  - rule: submit test
+    condition:
+      - active_loop: transact_search_form
+    steps:
+      - action: transact_search_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_submit_search_form
